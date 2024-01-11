@@ -1,30 +1,28 @@
 import React from 'react';
 import './ConnectToSpotify.css';
+import Message from './Message/Message';
 import Spotify from '../../util/Spotify';
 
 class ConnectToSpotify extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleConnectToSpotifyClick = this.handleConnectToSpotifyClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  async handleConnectToSpotifyClick() {
+  // connect to Spotify API
+  async handleClick() {
     await Spotify.connectToSpotify();
-    const token = await Spotify.getAccessToken();
-    if (token) {
-      this.props.onConnect();
-    }
+    await this.props.onConnect();
   };
 
   render() {
-    const { isConnected } = this.props;
     const jsx = (
       <div className='ConnectToSpotify'>
-        <button className='ConnectButton' onClick={this.handleConnectToSpotifyClick}>
+        <button className='ConnectButton' onClick={this.handleClick}>
           Connect to Spotify &nbsp;<i className="fab fa-spotify"></i>
         </button>
-        <p>{isConnected ? 'Connected' : 'Not Connected'}{console.log(isConnected)}</p>
+        <Message isConnected={this.props.isConnected} />
       </div>
     );
     return jsx;

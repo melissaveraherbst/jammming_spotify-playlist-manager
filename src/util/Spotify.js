@@ -2,25 +2,31 @@ import queryString from "query-string";
 
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
+
 let accessToken;
 
 const Spotify = {
     async connectToSpotify() {
-        try {
-            const scopes = ['user-read-private', 'user-read-email', 'playlist-modify-public', 'playlist-modify-private']; // Add necessary scopes
+        if (this.getAccessToken()) {
+            return;
+        } else {
+            try {
+                const scopes = ['playlist-modify-public', 'playlist-modify-private']; // Add necessary scopes
 
-            const queryParams = queryString.stringify({
-                client_id: clientId,
-                scope: scopes.join(' '),
-                response_type: 'token',
-                redirect_uri: redirectUri,
-            });
+                const queryParams = queryString.stringify({
+                    client_id: clientId,
+                    scope: scopes.join(' '),
+                    response_type: 'token',
+                    redirect_uri: redirectUri,
+                });
 
-            const authUrl = `https://accounts.spotify.com/authorize?${queryParams}`;
-            window.location.href = authUrl;
-
-        } catch (error) {
-            console.error('Error refreshing token:', error);
+                const authUrl = `https://accounts.spotify.com/authorize?${queryParams}`;
+                window.location.href = authUrl;
+                return true;
+            } catch (error) {
+                console.error('Error refreshing token:', error);
+                return false;
+            }
         }
     },
 
@@ -45,7 +51,7 @@ const Spotify = {
             return accessToken;
         } else {
             try {
-                const scopes = ['user-read-private', 'user-read-email', 'playlist-modify-public', 'playlist-modify-private']; // Add necessary scopes
+                const scopes = ['user-read-private', 'user-read-email', 'playlist-modify-public', 'playlist-modify-private'];
 
                 const queryParams = queryString.stringify({
                     client_id: clientId,
@@ -119,10 +125,6 @@ const Spotify = {
             const accessToken = await this.getAccessToken();
             const userProfile = await this.getUserProfile();
 
-            // *************************
-            console.log(userProfile);
-            // *************************
-
             const userID = userProfile.id;
 
             // POST method to add playlist to user's playlists
@@ -141,12 +143,11 @@ const Spotify = {
             });
 
             if (!createPlaylistResponse.ok) {
-                throw new Error('Failed to create playlist', createPlaylistResponse.statusText)
+                throw new Error('Failed to create playlist', createPlaylistResponse.statusText);
             }
 
             const playlist = await createPlaylistResponse.json();
-            console.log(playlist);
-            
+
             // 2. Save the tracks to the new playlist
             const playlistId = playlist.id;
 

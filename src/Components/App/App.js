@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import ConnectSpotify from '../ConnectSpotify/ConnectToSpotify';
+import ConnectToSpotify from '../ConnectToSpotify/ConnectToSpotify';
 import Playlist from '../Playlist/Playlist';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
@@ -11,12 +11,15 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      // ***********************************
       isConnected: false,
+      // ***********************************
       searchResults: [],
       playlistName: 'New Playlist',
       playlistTracks: []
     };
 
+    this.handleOnConnect = this.handleOnConnect.bind(this);
     this.search = this.search.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.addTrack = this.addTrack.bind(this);
@@ -24,9 +27,10 @@ class App extends React.Component {
     this.savePlaylist = this.savePlaylist.bind(this);
   }
 
-  handleSpotifyConnectionState() {
-    // Perform Spotify connection logic, and once connected, update the state
-    this.setState({ isConnected: true });
+  handleOnConnect() {
+    this.setState({
+      isConnected: true
+    })
   }
 
   search(term) {
@@ -71,13 +75,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { isConnected } = this.state;
     const jsx = (
       <div>
         <div className='Header'>
           <img src="/images/jammming_logo_logo.png" alt="logo" />
         </div>
-        <ConnectSpotify onConnect={this.handleSpotifyConnectionState} isConnected={isConnected} />
+        <ConnectToSpotify isConnected={this.state.isConnected} onConnect={this.handleOnConnect} />
         <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
