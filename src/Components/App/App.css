@@ -1,0 +1,42 @@
+.Header {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.Header img {
+	width: 25%;
+	max-width: 200px;
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	font-family: "Work Sans", sans-serif;
+	color: #fff;
+}
+
+.App-playlist {
+	display: flex;
+	justify-content: space-between;
+}
+
+.Footer {
+	display: flex;
+	justify-content: center;
+	align-items: end;
+	text-align: center;
+	height: 100px;
+	font-size: 0.85rem;
+}
+
+.Footer i {
+	color: #1ed760;
+}
+
+@media only screen and (max-width: 1020px) {
+	.App-playlist {
+		flex-direction: column;
+		align-items: center;
+	}
+}

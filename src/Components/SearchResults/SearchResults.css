@@ -1,0 +1,61 @@
+.SearchResults {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	padding: 2rem 1.25rem;
+	background-color: #141514;
+	border-radius: 8px;
+}
+
+.SearchResults {
+	&::-webkit-scrollbar {
+		width: 0.5rem;
+		height: 1rem;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: hsl(120, 2%, 20%);
+		border-radius: 3px;
+
+		&:hover {
+			background: hsl(120, 2%, 20%);
+		}
+	}
+}
+
+.SearchResults h2 {
+	width: 100%;
+	margin-bottom: 1rem;
+	outline: 0;
+	border-bottom: 1px solid hsl(0, 0%, 100%);
+	font-family: "Poppins", sans-serif;
+	font-size: 1.5rem;
+	color: #fff;
+}
+
+.SearchResults div {
+	max-height: 512px;
+	overflow-y: auto;
+
+	/* custom scrollbar */
+	&::-webkit-scrollbar {
+		width: 0.5rem;
+		height: 1rem;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: hsl(120, 2%, 20%);
+		border-radius: 3px;
+
+		&:hover {
+			background: hsl(120, 2%, 20%);
+		}
+	}
+}
+
+@media only screen and (max-width: 1020px) {
+	.SearchResults {
+		width: 100%;
+		margin-bottom: 1.5rem;
+	}
+}
