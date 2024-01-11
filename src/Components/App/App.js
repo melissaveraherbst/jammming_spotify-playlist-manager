@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import ConnectSpotify from '../ConnectSpotify/ConnectSpotify';
+import ConnectSpotify from '../ConnectSpotify/ConnectToSpotify';
 import Playlist from '../Playlist/Playlist';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
@@ -11,6 +11,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      isConnected: false,
       searchResults: [],
       playlistName: 'New Playlist',
       playlistTracks: []
@@ -21,6 +22,11 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
+  }
+
+  handleSpotifyConnectionState() {
+    // Perform Spotify connection logic, and once connected, update the state
+    this.setState({ isConnected: true });
   }
 
   search(term) {
@@ -65,12 +71,13 @@ class App extends React.Component {
   }
 
   render() {
+    const { isConnected } = this.state;
     const jsx = (
       <div>
         <div className='Header'>
           <img src="/images/jammming_logo_logo.png" alt="logo" />
         </div>
-        <ConnectSpotify  />
+        <ConnectSpotify onConnect={this.handleSpotifyConnectionState} isConnected={isConnected} />
         <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
@@ -86,7 +93,7 @@ class App extends React.Component {
           </div>
         </div>
         <div className='Footer'>
-          <p>Made with <i class="fas fa-heart"></i> by <a href='https://github.com/melissaveraherbst'>Melissa V. Herbst</a></p>
+          <p>Made with <i className="fas fa-heart"></i> by <a href='https://github.com/melissaveraherbst'>Melissa V. Herbst</a></p>
         </div>
       </div>
     );

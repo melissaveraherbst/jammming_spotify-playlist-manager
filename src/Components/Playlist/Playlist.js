@@ -27,7 +27,7 @@ class Playlist extends React.Component {
                     tracks={playlistTracks}
                     onRemoveTrack={onRemoveTrack}
                     isRemoval={true} />
-                <button className="Playlist-save" onClick={onSavePlaylist}>Save to Spotify &nbsp;<i class="fab fa-spotify"></i>
+                <button className="Playlist-save" onClick={onSavePlaylist}>Save to Spotify &nbsp;<i className="fab fa-spotify"></i>
                 </button>
             </div>
         );
