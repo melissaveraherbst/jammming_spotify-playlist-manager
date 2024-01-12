@@ -11,26 +11,16 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      // ***********************************
-      isConnected: false,
-      // ***********************************
       searchResults: [],
       playlistName: 'New Playlist',
       playlistTracks: []
     };
 
-    this.handleOnConnect = this.handleOnConnect.bind(this);
     this.search = this.search.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
-  }
-
-  handleOnConnect() {
-    this.setState({
-      isConnected: true
-    })
   }
 
   search(term) {
@@ -80,7 +70,7 @@ class App extends React.Component {
         <div className='Header'>
           <img src="/images/jammming_logo_logo.png" alt="logo" />
         </div>
-        <ConnectToSpotify isConnected={this.state.isConnected} onConnect={this.handleOnConnect} />
+        <ConnectToSpotify />
         <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">

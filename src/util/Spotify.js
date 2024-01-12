@@ -1,14 +1,16 @@
 import queryString from "query-string";
 
-const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
+const { REACT_APP_SPOTIFY_CLIENT_ID: clientId, REACT_APP_SPOTIFY_REDIRECT_URI: redirectUri } = process.env;
 
-let accessToken;
+// const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+// const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 
 const Spotify = {
+    _accessToken: '',
+
     async connectToSpotify() {
         if (this.getAccessToken()) {
-            return true;
+            return;
         } else {
             try {
                 const scopes = ['playlist-modify-public', 'playlist-modify-private']; // Add necessary scopes
@@ -22,7 +24,7 @@ const Spotify = {
 
                 const authUrl = `https://accounts.spotify.com/authorize?${queryParams}`;
                 window.location.href = authUrl;
-                // an access token means that the user is authorised/connected successfully
+                // a successful access token return means that the user is authorised/connected
                 return this.getAccessToken();
             } catch (error) {
                 console.error('Error refreshing token:', error);
@@ -32,8 +34,8 @@ const Spotify = {
     },
 
     getAccessToken() {
-        if (accessToken) {
-            return accessToken;
+        if (this.accessToken) {
+            return this.accessToken;
         }
 
         const urlParams = new URLSearchParams(window.location.hash.substring(1));
@@ -41,18 +43,18 @@ const Spotify = {
         const expiresIn = urlParams.get('expires_in');
 
         if (token && expiresIn) {
-            accessToken = token;
+            this.accessToken = token;
             const expiresInMs = Number(expiresIn) * 1000;
 
             setTimeout(() => {
-                accessToken = '';
+                this.accessToken = '';
             }, expiresInMs);
 
             window.history.pushState('Access Token', null, '/');
-            return accessToken;
+            return this.accessToken;
         } else {
             try {
-                const scopes = ['user-read-private', 'user-read-email', 'playlist-modify-public', 'playlist-modify-private'];
+                const scopes = ['playlist-modify-public', 'playlist-modify-private'];
 
                 const queryParams = queryString.stringify({
                     client_id: clientId,
@@ -71,20 +73,20 @@ const Spotify = {
     },
 
     async getUserProfile() {
-        try {      
+        try {
             const response = await fetch('https://api.spotify.com/v1/me', {
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${this.accessToken}`,
                     'Content-Type': 'application/json'
                 }
             });
-    
+
             if (!response.ok) {
                 throw new Error('Unable to fetch user profile');
             }
-    
+
             const userProfile = await response.json();
-    
+
             return userProfile;
         } catch (error) {
             console.log(error);

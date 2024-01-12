@@ -7,18 +7,26 @@ class ConnectToSpotify extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      isConnectedToSpotify: false
+    };
+
     this.handleClick = this.handleClick.bind(this);
   }
 
   // connect to Spotify API
   async handleClick() {
-    const connected = await Spotify.connectToSpotify();
-    if (connected) {
-      await this.props.onConnect();
-    } else {
-      return;
-    }
+    await Spotify.connectToSpotify();
   };
+
+  componentDidMount() {
+    const token = Spotify.getAccessToken();
+    if (token) {
+      this.setState({
+        isConnectedToSpotify: true
+      });
+    }
+  }
 
   render() {
     const jsx = (
@@ -26,7 +34,7 @@ class ConnectToSpotify extends React.Component {
         <button className='ConnectButton' onClick={this.handleClick}>
           Connect to Spotify &nbsp;<i className="fab fa-spotify"></i>
         </button>
-        <Message isConnected={this.props.isConnected} />
+        <Message isConnectedToSpotify={this.state.isConnectedToSpotify} />
       </div>
     );
     return jsx;
