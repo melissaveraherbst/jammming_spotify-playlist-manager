@@ -12,8 +12,12 @@ class ConnectToSpotify extends React.Component {
 
   // connect to Spotify API
   async handleClick() {
-    await Spotify.connectToSpotify();
-    await this.props.onConnect();
+    const connected = await Spotify.connectToSpotify();
+    if (connected) {
+      await this.props.onConnect();
+    } else {
+      return;
+    }
   };
 
   render() {

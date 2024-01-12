@@ -8,7 +8,7 @@ let accessToken;
 const Spotify = {
     async connectToSpotify() {
         if (this.getAccessToken()) {
-            return;
+            return true;
         } else {
             try {
                 const scopes = ['playlist-modify-public', 'playlist-modify-private']; // Add necessary scopes
@@ -22,7 +22,8 @@ const Spotify = {
 
                 const authUrl = `https://accounts.spotify.com/authorize?${queryParams}`;
                 window.location.href = authUrl;
-                return true;
+                // an access token means that the user is authorised/connected successfully
+                return this.getAccessToken();
             } catch (error) {
                 console.error('Error refreshing token:', error);
                 return false;
@@ -64,25 +65,31 @@ const Spotify = {
                 window.location.href = authUrl;
             } catch (error) {
                 console.error('Error refreshing token:', error);
+                return;
             }
         }
     },
 
     async getUserProfile() {
-        const response = await fetch('https://api.spotify.com/v1/me', {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                'Content-Type': 'application/json'
+        try {      
+            const response = await fetch('https://api.spotify.com/v1/me', {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            if (!response.ok) {
+                throw new Error('Unable to fetch user profile');
             }
-        });
-
-        if (!response.ok) {
-            throw new Error('Unable to fetch user profile');
+    
+            const userProfile = await response.json();
+    
+            return userProfile;
+        } catch (error) {
+            console.log(error);
+            return;
         }
-
-        const userProfile = await response.json();
-
-        return userProfile;
     },
 
     async search(term) {
