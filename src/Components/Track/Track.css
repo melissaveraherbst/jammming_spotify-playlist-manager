@@ -6,7 +6,7 @@
   border-radius: 8px;
   margin-bottom: 0.75rem;
   padding: 0.25rem 0.5rem;
-  height: 85px;
+  height: 75px;
 }
 
 .Track:hover {
@@ -20,8 +20,10 @@
 }
 
 .Track-information img {
-  height: 60px; 
+  height: 60px;
   aspect-ratio: 1;
+  border-radius: 6px;
+  border: 2px solid #313f55;
   align-self: center;
 }
 

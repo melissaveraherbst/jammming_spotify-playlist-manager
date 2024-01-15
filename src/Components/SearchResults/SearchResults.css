@@ -9,9 +9,8 @@
 
 .SearchResults h2 {
 	width: 100%;
-	margin-bottom: 1rem;
+	margin-bottom: 1.5rem;
 	outline: 0;
-	border-bottom: 1px solid hsl(0, 0%, 100%);
 	font-family: "Poppins", sans-serif;
 	font-size: 1.5rem;
 	color: #fff;
