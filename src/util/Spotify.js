@@ -117,6 +117,9 @@ const Spotify = {
                 name: track.name,
                 artist: track.artists[0].name,
                 album: track.album.name,
+                // ********** new content **********
+                album_cover: track.album.images[0].url,
+                // ********** new content **********
                 uri: track.uri
             }));
         } catch (error) {

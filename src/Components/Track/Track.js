@@ -7,13 +7,13 @@ class Track extends React.Component {
         this.addTrack = this.addTrack.bind(this);
         this.removeTrack = this.removeTrack.bind(this);
     }
-    
+
     addTrack() {
         //  prop passed from the TrackList Component
         const { track } = this.props;
         return this.props.onAddTrack(track);
     }
-    
+
     removeTrack() {
         //  prop passed from the TrackList Component
         const { track } = this.props;
@@ -32,16 +32,21 @@ class Track extends React.Component {
 
     render() {
         //  props passed from the TrackList Component
-        const { name, artist, album } = this.props.track;
+        const { name, artist, album, album_cover } = this.props.track;
         const jsx = (
             <div className="Track">
                 <div className="Track-information">
-                    <h3>
-                        {name}
-                    </h3>
-                    <p>
-                        {`${artist} | ${album}`}
-                    </p>
+                    {/* <div> */}
+                        <img src={album_cover} alt="album cover" />
+                    {/* </div> */}
+                    <div>
+                        <h3>
+                            {name}
+                        </h3>
+                        <p>
+                            {`${artist} | ${album}`}
+                        </p>
+                    </div>
                 </div>
                 {this.renderButtonAction()}
             </div>
