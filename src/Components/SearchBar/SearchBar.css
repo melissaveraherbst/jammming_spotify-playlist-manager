@@ -9,16 +9,18 @@
 
 .SearchBar input {
   width: 100%;
-	background-color: #141514;
+	background-color: #161E2B;
+  border: 1px solid #263144;
   color: inherit;
   padding: 0.75rem 2rem;
-  border: 1px solid hsl(120, 2%, 20%);
   border-radius: 32px;
   font-size: 1rem;
 }
 
-.SearchBar input:focus {
-  outline: 1px solid #fff;
+.SearchBar input:focus,
+.SearchBar input:hover {
+  outline: none;
+  border: 1px solid #fff;
 }
 
 .SearchButton {
@@ -29,12 +31,12 @@
   border-radius: 32px;
   border: 1px solid #1ed760;
   background-color: #1ed760;
-  color: #141514;
+  color: #121823;
   font-size: 1rem;
   cursor: pointer;
 }
 
 .SearchButton:hover {
-  background: #141514;
+  background: transparent;
   color: #1ed760;
 }

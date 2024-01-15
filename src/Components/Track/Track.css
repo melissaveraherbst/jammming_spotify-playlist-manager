@@ -1,8 +1,15 @@
 .Track {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid hsla(120, 2%, 25%, 0.5);
   padding: 0.5rem 0;
+  background-color: #1A2332;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.Track:hover {
+  background-color: #263144;
 }
 
 .Track-action {
@@ -11,18 +18,17 @@
   align-items: center;
   justify-content: center;
   color: #fff;
-  background-color: #141514;
+  background-color: #1A2332;
   border: 1px solid #fff;
   height: 1.5rem;
   aspect-ratio: 1;
   border-radius: 50%;
-  margin: 0 0.75rem;
   cursor: pointer;
   transition: color .25s;
 }
 
 .Track-action:hover {
-  color: #141514;
+  color: #1A2332;
   background-color: #fff;
 }
 

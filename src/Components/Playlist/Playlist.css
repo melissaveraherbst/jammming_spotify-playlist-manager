@@ -6,7 +6,7 @@
 	max-height: 512px;
 	overflow-y: scroll;
 	padding: 2rem 1.25rem;
-	background-color: #141514;
+	background-color: #161E2B;
 	border-radius: 8px;
 }
 
@@ -17,11 +17,11 @@
 	}
 	
 	&::-webkit-scrollbar-thumb {
-		background-color: hsl(120, 2%, 20%);
+		background-color: #263144;
 		border-radius: 3px;
 		
 		&:hover {
-			background: hsl(120, 2%, 20%);
+			background: #263144;
 		}
 	}
 }
@@ -44,7 +44,7 @@
 	padding: 0.75rem 1rem;
 	border-radius: 32px;
 	background-color: #1ed760;
-	color: #141514;
+	color: #121823;
 	text-align: center;
 	font-size: 1rem;
 	border: 1px solid #1ed760;
@@ -52,7 +52,7 @@
 }
 
 .Playlist-save:hover {
-	background: #141514;
+	background: transparent;
 	color: #1ed760;
 }
 
