@@ -1,0 +1,10 @@
+.Header {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.Header img {
+	width: 25%;
+	max-width: 200px;
+}

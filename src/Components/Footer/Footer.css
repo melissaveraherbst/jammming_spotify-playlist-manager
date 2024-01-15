@@ -1,0 +1,12 @@
+.Footer {
+	display: flex;
+	justify-content: center;
+	align-items: end;
+	text-align: center;
+	height: 100px;
+	font-size: 0.85rem;
+}
+
+.Footer i {
+	color: #1ed760;
+}

@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
+import Header from '../Header/Header';
 import ConnectToSpotify from '../ConnectToSpotify/ConnectToSpotify';
-import Playlist from '../Playlist/Playlist';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
+import Playlist from '../Playlist/Playlist';
+import Footer from '../Footer/Footer';
 import Spotify from '../../util/Spotify';
 
 class App extends React.Component {
@@ -67,27 +69,21 @@ class App extends React.Component {
   render() {
     const jsx = (
       <div>
-        <div className='Header'>
-          <img src="/images/jammming_logo_logo.png" alt="logo" />
-        </div>
+        <Header />
         <ConnectToSpotify />
-        <div className="App">
-          <SearchBar onSearch={this.search} />
-          <div className="App-playlist">
-            <SearchResults
-              searchResults={this.state.searchResults}
-              onAddTrack={this.addTrack} />
-            <Playlist
-              playlistName={this.state.playlistName}
-              playlistTracks={this.state.playlistTracks}
-              onNameChange={this.updatePlaylistName}
-              onRemoveTrack={this.removeTrack}
-              onSavePlaylist={this.savePlaylist} />
-          </div>
+        <SearchBar onSearch={this.search} />
+        <div className="App-playlist">
+          <SearchResults
+            searchResults={this.state.searchResults}
+            onAddTrack={this.addTrack} />
+          <Playlist
+            playlistName={this.state.playlistName}
+            playlistTracks={this.state.playlistTracks}
+            onNameChange={this.updatePlaylistName}
+            onRemoveTrack={this.removeTrack}
+            onSavePlaylist={this.savePlaylist} />
         </div>
-        <div className='Footer'>
-          <p>Made with <i className="fas fa-heart"></i> by <a href='https://github.com/melissaveraherbst'>Melissa V. Herbst</a></p>
-        </div>
+        <Footer />
       </div>
     );
     return jsx;
