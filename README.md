@@ -1,6 +1,6 @@
 <div align=center>
 
-<img src="./public/images/jammming_logo_full.png" width=250px>
+<img src="src/assets/jammming_logo_full.png" width=250px>
     
 ![Static Badge](https://img.shields.io/badge/HTML5-grey?style=flat-square&logo=html5)
 ![Static Badge](https://img.shields.io/badge/CSS3-grey?style=flat-square&logo=css3)
