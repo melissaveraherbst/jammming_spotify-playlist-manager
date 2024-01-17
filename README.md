@@ -9,7 +9,7 @@
 ![Static Badge](https://img.shields.io/badge/Spotify%20API-grey?style=flat-square&logo=spotify)
 ![Static Badge](https://img.shields.io/badge/Codecademy%20Project-grey?style=flat-square&logo=codecademy)
 
-**A Codecademy Pro Project for the [Create a Front-End App with React](https://www.codecademy.com/learn/paths/build-web-apps-with-react) Course**
+## A Codecademy Pro Project for the [Create a Front-End App with React](https://www.codecademy.com/learn/paths/build-web-apps-with-react) Course
 
 </div>
 
