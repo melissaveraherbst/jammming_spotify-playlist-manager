@@ -1,7 +1,11 @@
 <div align=center>
 
-<img src="src/assets/jammming_logo_full.png" width=250px>
-    
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/melissaveraherbst/jammming_spotify-playlist-manager/assets/84316275/4f391cc0-c120-4e8f-8daa-117611f253a5">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/melissaveraherbst/jammming_spotify-playlist-manager/assets/84316275/c0a933ad-3889-4f61-a0a2-37c6deee74f6">
+  <img alt="Shows a black logo in light color mode and a white one in dark color mode." src="https://github.com/melissaveraherbst/jammming_spotify-playlist-manager/assets/84316275/4f391cc0-c120-4e8f-8daa-117611f253a5" width=250px >
+</picture>
+
 ![Static Badge](https://img.shields.io/badge/HTML5-grey?style=flat-square&logo=html5)
 ![Static Badge](https://img.shields.io/badge/CSS3-grey?style=flat-square&logo=css3)
 ![Static Badge](https://img.shields.io/badge/JavaScript-grey?style=flat-square&logo=JavaScript)
